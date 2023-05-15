@@ -6,7 +6,11 @@ import SearchBar from './SearchBar';
 function Header({ title, searchBool }) {
   const history = useHistory();
   return (
-    <header>
+    <header className="w-screen bg-gray-200 flex justify-evenly items-center">
+      {title !== '' && <h1 data-testid="page-title">{title}</h1>}
+      {searchBool && (
+        <SearchBar />
+      )}
       <button
         type="button"
         data-testid="profile-top-btn"
@@ -19,10 +23,6 @@ function Header({ title, searchBool }) {
           // data-testid="profile-top-btn"
         />
       </button>
-      {searchBool && (
-        <SearchBar />
-      )}
-      {title !== '' && <h1 data-testid="page-title">{title}</h1>}
     </header>
   );
 }

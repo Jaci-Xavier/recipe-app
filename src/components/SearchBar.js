@@ -51,61 +51,81 @@ function SearchBar() {
 
   return (
     <div>
-      <button onClick={ () => (!open ? setOpen(true) : setOpen(false)) }>
-        <img
-          src={ searchIcon }
-          alt="icone para realizar pesquisa"
-          data-testid="search-top-btn"
-        />
-      </button>
+      {!open && (
+        <button onClick={ () => (!open ? setOpen(true) : setOpen(false)) }>
+          <img
+            src={ searchIcon }
+            alt="icone para realizar pesquisa"
+            data-testid="search-top-btn"
+          />
+        </button>
+      )}
       { open && (
-        <div>
+        <div className="">
           <input
+            className="text-center border-2 border-gray-400 rounded-md h-9"
             type="text"
             data-testid="search-input"
             onChange={ (e) => {
               setParameter(e.target.value);
             } }
           />
-          <div>
-            <input
-              type="radio"
-              data-testid="ingredient-search-radio"
-              id="ingredient-radio"
-              onClick={ () => {
-                setRadioV('ing');
-              } }
-            />
-            <label htmlFor="ingredient-radio">ingredient</label>
-
-            <input
-              type="radio"
-              data-testid="name-search-radio"
-              id="name-radio"
-              onClick={ () => {
-                setRadioV('name');
-              } }
-            />
-            <label htmlFor="name-radio">name</label>
-
-            <input
-              type="radio"
-              data-testid="first-letter-search-radio"
-              id="first-leter-radio"
-              onClick={ () => {
-                setRadioV('fl');
-              } }
-            />
-            <label htmlFor="first-leter-radio">first-letter</label>
-
-            <button
-              data-testid="exec-search-btn"
-              onClick={ () => {
-                handleClickExec(radioV, parameter);
-              } }
+          <button
+            className="m-1 p-1 bg-orange-500 hover:bg-green-500 rounded-md h-8"
+            data-testid="exec-search-btn"
+            onClick={ () => {
+              handleClickExec(radioV, parameter);
+              setOpen(false);
+            } }
+          >
+            Search
+          </button>
+          <div className="flex justify-evenly">
+            <label
+              className="flex items-center"
+              htmlFor="ingredient-radio"
             >
-              Search
-            </button>
+              <input
+                name="radio"
+                type="radio"
+                data-testid="ingredient-search-radio"
+                id="ingredient-radio"
+                onClick={ () => {
+                  setRadioV('ing');
+                } }
+              />
+              Ingredient
+
+            </label>
+
+            <label htmlFor="name-radio">
+              <input
+                name="radio"
+                type="radio"
+                data-testid="name-search-radio"
+                id="name-radio"
+                onClick={ () => {
+                  setRadioV('name');
+                } }
+              />
+              Name
+
+            </label>
+
+            <label htmlFor="first-leter-radio">
+              <input
+                name="radio"
+                type="radio"
+                data-testid="first-letter-search-radio"
+                id="first-leter-radio"
+                onClick={ () => {
+                  setRadioV('fl');
+                } }
+              />
+              First-letter
+
+            </label>
+
           </div>
         </div>
       ) }
