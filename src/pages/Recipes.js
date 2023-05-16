@@ -9,8 +9,10 @@ function Recipes({ history }) {
   const typeRecipe = pathname === '/meals' ? 'Meal' : 'Drink';
   return (
     <main className="relative">
-      <Header title={ `${typeRecipe}s` } searchBool />
-      <ButtonsFilterCategories history={ history } />
+      <div className="fixed top-0">
+        <Header title={ `${typeRecipe}s` } searchBool />
+        <ButtonsFilterCategories history={ history } />
+      </div>
       <RecipesMealsOrDrinks history={ history } />
       <Footer history={ history } />
     </main>

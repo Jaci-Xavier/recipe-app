@@ -63,7 +63,7 @@ function SearchBar() {
       { open && (
         <div className="">
           <input
-            className="text-center border-2 border-gray-400 rounded-md h-9"
+            className="text-center border-2 border-gray-400 rounded-md h-9 w-44"
             type="text"
             data-testid="search-input"
             onChange={ (e) => {

@@ -60,81 +60,109 @@ function MealsDetails() {
   const ingredients = listOfIngredients(recipe);
 
   return (
-    <div>
-      <h1 data-testid="recipe-title">
+    <div
+      className="relative flex flex-col"
+    >
+      <h1
+        className="text-white text-2xl text-center"
+        data-testid="recipe-title"
+      >
         {strMeal}
       </h1>
-      <ShareButton
-        testId="share-btn"
-        handleClickShareBtn={ () => handleClickShareBtn() }
-      />
-      {copyLink && <small>Link copied!</small>}
-      <FavoriteButton testId="favorite-btn" recipe={ recipe } />
       <img
+        className="h-60 w-60 rounded-xl m-auto"
         data-testid="recipe-photo"
         src={ strMealThumb }
         alt={ strMeal }
       />
+      <div
+        className="flex absolute w-14 gap-2 top-60 left-64"
+      >
+        <FavoriteButton testId="favorite-btn" recipe={ recipe } />
+        <ShareButton
+          testId="share-btn"
+          handleClickShareBtn={ () => handleClickShareBtn() }
+        />
+      </div>
+      {copyLink && (
+        <small
+          className="text-green-400 text-center"
+        >
+          Link copied!
+        </small>
+      )}
       <p
         className="text-slate-200 font-semibold italic"
         data-testid="recipe-category"
       >
-        Categoria:
-        {strCategory}
+        {`Categoria: ${strCategory}`}
       </p>
-      <h3
-        className="text-center bg-slate-50
+      <div className="pl-2">
+        <h3
+          className="text-center bg-slate-50
          bg-opacity-70 text-orange-700 font-bold text-md "
-      >
-        Ingredientes
+        >
+          Ingredientes
 
-      </h3>
-      <ul
-        className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
+        </h3>
+        <ul
+          className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
       border-gray-500 rounded-lg flex p-3 text-center"
-      >
-        {ingredients.map(({ ingredient, measure }, index) => (
-          <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
-            {` ${measure} - ${ingredient}`}
-          </li>
-        ))}
-      </ul>
-      <h3
-        className="text-center bg-slate-50
+        >
+          {ingredients.map(({ ingredient, measure }, index) => (
+            <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
+              {` ${measure} - ${ingredient}`}
+            </li>
+          ))}
+        </ul>
+        <h3
+          className="text-center bg-slate-50
          bg-opacity-70 text-orange-700 font-bold text-md "
-      >
-        Modo de Preparo:
+        >
+          Modo de Preparo:
 
-      </h3>
-      <p
-        className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
+        </h3>
+
+        <p
+          className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
       border-gray-500 rounded-lg flex p-3"
-        data-testid="instructions"
-      >
-        {strInstructions}
-      </p>
+          data-testid="instructions"
+        >
+          {strInstructions}
+        </p>
 
-      <iframe
-        title="video"
-        data-testid="video"
-        src={ strYoutube }
-      />
+        <iframe
+          className="m-auto mt-2"
+          title="video"
+          data-testid="video"
+          src={ strYoutube }
+        />
+      </div>
+      <p className="text-white">Opções de Bebidas</p>
       <Slider { ...settings }>
         {drinksRecommendation.map((drink, index) => (
           <div
+            className="w-full m-auto p-2"
             data-testid={ `${index}-recommendation-card` }
             key={ drink.idDrink }
           >
             <h2
+              className="text-white pl-2"
               data-testid={ `${index}-recommendation-title` }
             >
               {drink.strDrink}
             </h2>
-            <img src={ drink.strDrinkThumb } alt={ drink.strDrink } />
+            <img
+              className="h-50 w-50 rounded-xl m-auto"
+              src={ drink.strDrinkThumb }
+              alt={ drink.strDrink }
+            />
           </div>
         ))}
       </Slider>
-      <StartRecipeButton />
+      <div className="mt-16">
+        <StartRecipeButton />
+      </div>
     </div>
   );
 }

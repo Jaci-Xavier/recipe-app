@@ -28,14 +28,14 @@ function StartRecipeButton() {
     return (
       <button
         className=" border-lime-600 border-4 bg-lime-500
-        rounded-2xl hover:scale-150 duration-300"
+        hover:scale-150 duration-300 w-full"
         type="button"
         data-testid="start-recipe-btn"
         style={ { position: 'fixed', bottom: 0 } }
         onClick={ () => history.push(`/${typePath}/${idPath}/in-progress`) }
         src={ InProgress ? 'Continue Recipe' : 'Start Recipe' }
       >
-        {InProgress ? 'Continue Recipe' : 'Start Recipe'}
+        {InProgress ? 'Continue' : 'Start'}
       </button>
     );
   } return null;

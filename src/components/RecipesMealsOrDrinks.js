@@ -10,7 +10,7 @@ function RecipesMealsOrDrinks({ history }) {
 
   return (
     <section
-      className="mt-20 h-screen flex flex-wrap gap-5 p-2 w-full justify-center mb-96 "
+      className="mt-40 h-screen flex flex-wrap gap-5 p-2 w-full justify-center mb-96 "
     >
       { listRecipes && listRecipes.map((recipe, index) => (
         <div

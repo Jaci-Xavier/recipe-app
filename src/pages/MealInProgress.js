@@ -102,54 +102,68 @@ function MealInProgress() {
   const ingredients = listOfIngredients(recipe);
 
   return (
-    <div>
-      <h1 data-testid="recipe-title">
+    <div className="relative flex flex-col">
+      <h1 className="text-white text-2xl text-center" data-testid="recipe-title">
         {strMeal}
       </h1>
-      <h4 data-testid="recipe-category">
+      <h4 className="text-white text-2xl" data-testid="recipe-category">
         {strCategory}
       </h4>
       <img
+        className="h-60 w-60 rounded-xl m-auto"
         data-testid="recipe-photo"
         src={ strMealThumb }
         alt={ strMeal }
       />
-      <h3>Ingredientes</h3>
-      {ingredients.map(({ ingredient, measure }, index) => {
-        const isCheckedIngredient = isChecked.includes(ingredient);
-        const textDecoration = isCheckedIngredient
-          ? 'line-through solid rgb(0, 0, 0)' : '';
-        return (
-          <label
-            key={ index }
-            data-testid={ `${index}-ingredient-step` }
-            style={ { textDecoration } }
-          >
-            <input
-              type="checkbox"
-              name={ ingredient }
-              value={ ingredient }
-              checked={ isCheckedIngredient }
-              onChange={ onChange }
-            />
-            <label htmlFor={ ingredient }>
-              {` ${measure} - ${ingredient}`}
+      <div className="flex absolute w-14 gap-2 top-64 left-64">
+        <FavoriteButton recipe={ recipe } />
+        <ShareButton
+          testId="share-btn"
+          handleClickShareBtn={ () => handleClickShareBtn() }
+        />
+      </div>
+      { copyLink && <p className="text-green-400 text-center text-sm">Link copied!</p>}
+      <h3 className="text-white text-2xl m-2">Ingredientes</h3>
+      <div
+        className="flex flex-col justify-around bg-slate-50 bg-opacity-60 border-2
+      border-gray-500 rounded-lg p-3"
+      >
+        {ingredients.map(({ ingredient, measure }, index) => {
+          const isCheckedIngredient = isChecked.includes(ingredient);
+          const textDecoration = isCheckedIngredient
+            ? 'line-through solid rgb(0, 0, 0)' : '';
+          return (
+            <label
+              key={ index }
+              data-testid={ `${index}-ingredient-step` }
+              style={ { textDecoration } }
+            >
+              <input
+                className="accent-lime-600"
+                type="checkbox"
+                name={ ingredient }
+                value={ ingredient }
+                checked={ isCheckedIngredient }
+                onChange={ onChange }
+              />
+              <label htmlFor={ ingredient }>
+                {` ${measure} - ${ingredient}`}
+              </label>
             </label>
-          </label>
-        );
-      }) }
-      <h2>Instructions</h2>
-      <p data-testid="instructions">
+          );
+        })}
+      </div>
+      <h2 className="text-white text-2xl m-2">Instructions</h2>
+      <p
+        className="flex flex-col justify-around bg-slate-50 bg-opacity-60 border-2
+        border-gray-500 rounded-lg p-3"
+        data-testid="instructions"
+      >
         {strInstructions}
       </p>
-      <FavoriteButton recipe={ recipe } />
-      <ShareButton
-        testId="share-btn"
-        handleClickShareBtn={ () => handleClickShareBtn() }
-      />
-      { copyLink && <p>Link copied!</p>}
-
       <button
+        className=" border-sky-600 border-4 bg-sky-500
+        hover:scale-150 duration-300 w-full mt-2 text-white"
         type="button"
         data-testid="finish-recipe-btn"
         disabled={ isChecked.length !== Object.keys(ingredients).length }

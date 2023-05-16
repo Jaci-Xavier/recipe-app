@@ -34,7 +34,7 @@ function ButtonsFilterCategories() {
   }
 
   return (
-    <section className="absolute p-2 top-13 w-full flex-wrap bg-slate-200 flex justify-evenly">
+    <section className="p-2 top-13 w-full flex-wrap bg-slate-200 flex justify-evenly">
       { categoriesNames.map((category) => (
         <button
           className="bg-gray-500 opacity-80 p-1 rounded-md hover:opacity-100 text-white"

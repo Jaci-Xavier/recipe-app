@@ -18,35 +18,47 @@ export default function Profile() {
   };
 
   return (
-    <div>
+    <div className="h-screen flex flex-col">
       <Header title="Profile" searchBool={ false } />
-      <p data-testid="profile-email">{getLS && getLS.email}</p>
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ () => history.push('/done-recipes') }
+      <div
+        className="bg-slate-200/50 m-auto flex flex-col justify-center items-center h-60"
       >
-        <img src={ doneIcon } alt="done icon" />
-        Done Recipes
-      </button>
+        <p
+          className="text-3xl"
+          data-testid="profile-email"
+        >
+          {getLS && getLS.email}
+        </p>
+        <button
+          className="flex p-4 "
+          type="button"
+          data-testid="profile-done-btn"
+          onClick={ () => history.push('/done-recipes') }
+        >
+          <img src={ doneIcon } alt="done icon" />
+          Done Recipes
+        </button>
 
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ () => history.push('/favorite-recipes') }
-      >
-        <img src={ yellowHearthIcon } alt="heart icon" />
-        Favorite Recipes
-      </button>
+        <button
+          className="flex p-4 "
+          type="button"
+          data-testid="profile-favorite-btn"
+          onClick={ () => history.push('/favorite-recipes') }
+        >
+          <img src={ yellowHearthIcon } alt="heart icon" />
+          Favorite Recipes
+        </button>
 
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ handleClick }
-      >
-        <img src={ logoutIcon } alt="logout icon" />
-        Logout
-      </button>
+        <button
+          className="flex p-4 "
+          type="button"
+          data-testid="profile-logout-btn"
+          onClick={ handleClick }
+        >
+          <img src={ logoutIcon } alt="logout icon" />
+          Logout
+        </button>
+      </div>
       <Footer history={ history } />
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/heart-fill.svg';
+import whiteHeartIcon from '../../images/heart.svg';
 
 function FavoriteButton({ recipe }) {
   // console.log(recipe);
@@ -59,7 +59,7 @@ function FavoriteButton({ recipe }) {
   return (
     <div className="div-favorite-btn">
       <button
-        className="hover:bg-red-500 rounded hover:scale-125 duration-500"
+        className="rounded hover:scale-125 duration-500"
         type="button"
         data-testid="favorite-btn"
         onClick={ handleFavoriteClick }
