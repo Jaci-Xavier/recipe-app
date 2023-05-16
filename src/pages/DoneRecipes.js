@@ -3,10 +3,13 @@ import copy from 'clipboard-copy';
 import shareBtn from '../images/shareIcon.svg';
 import Header from '../components/Header';
 import ShareButton from '../components/buttons/shareButton';
+import Footer from '../components/Footer';
+import { useHistory } from 'react-router-dom';
 
 export default function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [copyLink, setCopyLink] = useState(false);
+  const history = useHistory();
   const [filtredDoneRecipes, setFiltredDoneRecipes] = useState([]);
 
   useEffect(() => {
@@ -137,6 +140,7 @@ export default function DoneRecipes() {
             ))}
         </section>
       </div>
+      <Footer history={ history }/>
     </>
   );
 }

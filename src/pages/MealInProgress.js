@@ -47,7 +47,7 @@ function MealInProgress() {
   //   return <p>Loading...</p>;
   // }
 
-  const doneRecipes = [
+  const doneRecipes =
     {
       id,
       type: 'meal',
@@ -58,8 +58,7 @@ function MealInProgress() {
       image: recipe.strMealThumb,
       doneDate: dateNow.toISOString(),
       tags,
-    },
-  ];
+    };
 
   const onChange = ({ target }) => {
     const { checked } = target;
@@ -89,7 +88,7 @@ function MealInProgress() {
 
     setDoneRecipesMock(recipesFromLocalStorage);
     history.push('/done-recipes');
-    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    localStorage.setItem('doneRecipes', JSON.stringify([...recipesFromLocalStorage, doneRecipes]));
   };
 
   const {

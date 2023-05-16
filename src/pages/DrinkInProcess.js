@@ -48,7 +48,7 @@ function DrinksInProcess() {
   //   return <p>Loading...</p>;
   // }
 
-  const doneRecipes = [
+  const doneRecipes =
     {
       id,
       type: 'drink',
@@ -59,8 +59,7 @@ function DrinksInProcess() {
       image: recipe.strDrinkThumb,
       doneDate: dateNow.toISOString(),
       tags,
-    },
-  ];
+    };
 
   const onChange = ({ target }) => {
     const { checked } = target;
@@ -90,7 +89,7 @@ function DrinksInProcess() {
 
     setDoneRecipesMock(recipesFromLocalStorage);
     history.push('/done-recipes');
-    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    localStorage.setItem('doneRecipes', JSON.stringify([...recipesFromLocalStorage, doneRecipes]));
   };
 
   const {

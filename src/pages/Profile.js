@@ -21,7 +21,7 @@ export default function Profile() {
     <div className="h-screen flex flex-col">
       <Header title="Profile" searchBool={ false } />
       <div
-        className="bg-slate-200/50 m-auto flex flex-col justify-center items-center h-60"
+        className="rounded-md p-2 bg-slate-200/50 m-auto flex flex-col justify-center items-center h-60"
       >
         <p
           className="text-3xl"
@@ -30,32 +30,38 @@ export default function Profile() {
           {getLS && getLS.email}
         </p>
         <button
-          className="flex p-4 "
+          className="flex p-4 text-lg w-60"
           type="button"
           data-testid="profile-done-btn"
           onClick={ () => history.push('/done-recipes') }
         >
-          <img src={ doneIcon } alt="done icon" />
+          <img
+            className="pr-2"
+          src={ doneIcon } alt="done icon" />
           Done Recipes
         </button>
 
         <button
-          className="flex p-4 "
+          className="flex p-4 text-lg w-60"
           type="button"
           data-testid="profile-favorite-btn"
           onClick={ () => history.push('/favorite-recipes') }
         >
-          <img src={ yellowHearthIcon } alt="heart icon" />
+          <img
+            className="pr-2"
+          src={ yellowHearthIcon } alt="heart icon" />
           Favorite Recipes
         </button>
 
         <button
-          className="flex p-4 "
+          className="flex p-4 text-lg w-60"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ handleClick }
         >
-          <img src={ logoutIcon } alt="logout icon" />
+          <img
+            className="pr-2"
+          src={ logoutIcon } alt="logout icon" />
           Logout
         </button>
       </div>
