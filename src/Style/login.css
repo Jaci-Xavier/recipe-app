@@ -2,6 +2,9 @@ body{
   background-image: url(Loginbg.jpg);
   background-position: center;
 }
+.xablau{
+top: -80px;
+}
 /* 
 .login {
     display: flex;

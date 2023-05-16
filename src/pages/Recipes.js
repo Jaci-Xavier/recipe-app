@@ -8,7 +8,7 @@ function Recipes({ history }) {
   const { pathname } = history.location;
   const typeRecipe = pathname === '/meals' ? 'Meal' : 'Drink';
   return (
-    <main>
+    <main className="relative">
       <Header title={ `${typeRecipe}s` } searchBool />
       <ButtonsFilterCategories history={ history } />
       <RecipesMealsOrDrinks history={ history } />

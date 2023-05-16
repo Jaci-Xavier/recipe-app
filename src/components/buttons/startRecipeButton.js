@@ -27,7 +27,8 @@ function StartRecipeButton() {
   if (!DoneRecipes) {
     return (
       <button
-        className=" border-lime-600 border-4 bg-lime-500 rounded-2xl"
+        className=" border-lime-600 border-4 bg-lime-500
+        rounded-2xl hover:scale-150 duration-300"
         type="button"
         data-testid="start-recipe-btn"
         style={ { position: 'fixed', bottom: 0 } }
