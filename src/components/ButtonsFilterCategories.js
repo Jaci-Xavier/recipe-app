@@ -34,9 +34,10 @@ function ButtonsFilterCategories() {
   }
 
   return (
-    <section className='flex-wrap bg-slate-200 flex justify-evenly'>
+    <section className="flex-wrap bg-slate-200 flex justify-evenly">
       { categoriesNames.map((category) => (
-        <button className='bg-gray-500 opacity-80 p-1 rounded-md hover:opacity-100 text-white'
+        <button
+          className="bg-gray-500 opacity-80 p-1 rounded-md hover:opacity-100 text-white"
           data-testid={ `${category}-category-filter` }
           onClick={ () => handleFilterButton(category) }
           key={ `${category}-category-filter` }
@@ -44,7 +45,8 @@ function ButtonsFilterCategories() {
           { category }
         </button>
       ))}
-      <button className='bg-red-600 opacity-80 p-1 rounded-md hover:opacity-90 text-white'
+      <button
+        className=" bg-red-600 opacity-80 p-1 rounded-md hover:opacity-90 text-white"
         data-testid="All-category-filter"
         onClick={ () => handleRemoveFilter() }
       >

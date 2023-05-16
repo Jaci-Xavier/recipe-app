@@ -20,7 +20,7 @@ function DrinksDetails() {
 
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,
@@ -60,35 +60,62 @@ function DrinksDetails() {
 
   return (
     <div>
-      <h1 data-testid="recipe-title">
+      <h1
+        className="text-xl text-center font-bold bg-orange-400 bg-opacity-70"
+        data-testid="recipe-title"
+      >
         {strDrink}
       </h1>
-      <ShareButton
-        testId="share-btn"
-        handleClickShareBtn={ () => handleClickShareBtn() }
-      />
-      {copyLink && <small>Link copied!</small>}
-      <FavoriteButton testId="favorite-btn" recipe={ recipe } />
+      <div className="flex">
+        <FavoriteButton testId="favorite-btn" recipe={ recipe } />
+        <ShareButton
+          testId="share-btn"
+          handleClickShareBtn={ () => handleClickShareBtn() }
+        />
+        {copyLink && <small>Link copied!</small>}
+      </div>
       <img
         data-testid="recipe-photo"
         src={ strDrinkThumb }
         alt={ strDrink }
       />
-      <p data-testid="recipe-category">
+      <p
+        className="text-slate-200 font-semibold italic"
+        data-testid="recipe-category"
+      >
         Categoria:
         {strCategory}
         {strAlcoholic}
       </p>
-      <h3>Ingredientes</h3>
-      <ul>
+      <h3
+        className="text-center bg-slate-50 bg-opacity-70
+         text-orange-700 font-bold text-md "
+      >
+        Ingredientes
+
+      </h3>
+      <ul
+        className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
+      border-gray-500 rounded-lg flex p-3 text-center"
+      >
         {ingredients.map(({ ingredient, measure }, index) => (
           <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
             {` ${measure} - ${ingredient}`}
           </li>
         ))}
       </ul>
-      <h3>Modo de Preparo</h3>
-      <p data-testid="instructions">
+      <h3
+        className="text-center bg-slate-50 bg-opacity-70
+         text-orange-700 font-bold text-md "
+      >
+        Modo de Preparo
+
+      </h3>
+      <p
+        className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
+      border-gray-500 rounded-lg flex p-3 text-center"
+        data-testid="instructions"
+      >
         {strInstructions}
       </p>
 

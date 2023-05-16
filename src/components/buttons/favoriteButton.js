@@ -59,6 +59,7 @@ function FavoriteButton({ recipe }) {
   return (
     <div className="div-favorite-btn">
       <button
+        className="hover:bg-red-500 rounded hover:scale-125 duration-500"
         type="button"
         data-testid="favorite-btn"
         onClick={ handleFavoriteClick }

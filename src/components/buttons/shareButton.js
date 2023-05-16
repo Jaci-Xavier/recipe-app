@@ -7,6 +7,7 @@ function ShareButton({ testId, handleClickShareBtn }) {
   return (
     <div>
       <button
+        className="hover:bg-sky-600 rounded hover:scale-125 duration-500"
         type="button"
         src={ shareBtn }
         onClick={ handleClickShareBtn }

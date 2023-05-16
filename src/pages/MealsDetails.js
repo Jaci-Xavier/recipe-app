@@ -20,7 +20,7 @@ function MealsDetails() {
 
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,
@@ -75,20 +75,42 @@ function MealsDetails() {
         src={ strMealThumb }
         alt={ strMeal }
       />
-      <p data-testid="recipe-category">
+      <p
+        className="text-slate-200 font-semibold italic"
+        data-testid="recipe-category"
+      >
         Categoria:
         {strCategory}
       </p>
-      <h3>Ingredientes</h3>
-      <ul>
+      <h3
+        className="text-center bg-slate-50
+         bg-opacity-70 text-orange-700 font-bold text-md "
+      >
+        Ingredientes
+
+      </h3>
+      <ul
+        className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
+      border-gray-500 rounded-lg flex p-3 text-center"
+      >
         {ingredients.map(({ ingredient, measure }, index) => (
           <li key={ ingredient } data-testid={ `${index}-ingredient-name-and-measure` }>
             {` ${measure} - ${ingredient}`}
           </li>
         ))}
       </ul>
-      <h3>Modo de Preparo</h3>
-      <p data-testid="instructions">
+      <h3
+        className="text-center bg-slate-50
+         bg-opacity-70 text-orange-700 font-bold text-md "
+      >
+        Modo de Preparo:
+
+      </h3>
+      <p
+        className="flex-col h-2/6 justify-around bg-slate-50 bg-opacity-60 border-2
+      border-gray-500 rounded-lg flex p-3"
+        data-testid="instructions"
+      >
         {strInstructions}
       </p>
 

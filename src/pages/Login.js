@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { LoginContext } from '../context/LoginProvider';
 import '../Style/login.css';
-import logo from '../Style/logo.gif';
+import logo from '../Style/logo.png';
 
 function Login({ history }) {
   const { login, setLogin } = useContext(LoginContext);
@@ -41,7 +41,8 @@ function Login({ history }) {
           />
         </label>
         <button
-          className="disabled:bg-orange-300 bg-orange-500 hover:bg-green-500 rounded-md h-8"
+          className="disabled:bg-orange-300 bg-orange-500
+           hover:bg-green-500 rounded-md h-8"
           type="button"
           data-testid="login-submit-btn"
           disabled={ !isValid }
@@ -51,7 +52,7 @@ function Login({ history }) {
         </button>
       </form>
       <img
-        className="w-3/5"
+        className="w-3/5 bg-slate-50 bg-opacity-10 rounded-xl"
         src={ logo }
         alt="logo"
       />
