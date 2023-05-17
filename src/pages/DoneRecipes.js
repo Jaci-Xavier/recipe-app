@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import copy from 'clipboard-copy';
-import shareBtn from '../images/shareIcon.svg';
-import Header from '../components/Header';
-import ShareButton from '../components/buttons/shareButton';
-import Footer from '../components/Footer';
 import { useHistory } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import CardRecipe from '../components/CardRecipe';
 
 export default function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
-  const [copyLink, setCopyLink] = useState(false);
   const history = useHistory();
   const [filtredDoneRecipes, setFiltredDoneRecipes] = useState([]);
 
@@ -18,28 +15,19 @@ export default function DoneRecipes() {
     }
   }, []);
 
-  const handleClickShareBtn = (type, id) => {
-    copy(`http://localhost:3000/${type}s/${id}`);
-    setCopyLink(true);
-  };
-
   const handleClickFilter = (type) => {
     let filtredRecipe = [];
     switch (type) {
     case 'drink':
       filtredRecipe = doneRecipes.filter((recipe) => recipe.type === 'drink');
       setFiltredDoneRecipes(filtredRecipe);
-      console.log('drink');
       break;
     case 'meal':
       filtredRecipe = doneRecipes.filter((recipe) => recipe.type === 'meal');
       setFiltredDoneRecipes(filtredRecipe);
-      console.log('meal');
       break;
     default:
       setFiltredDoneRecipes([]);
-      // setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
-      console.log('all');
       break;
     }
   };
@@ -81,66 +69,11 @@ export default function DoneRecipes() {
         <section className="m-auto">
           {(filtredDoneRecipes.length ? filtredDoneRecipes : doneRecipes)
             .map((recipe, index) => (
-              <div
-                className="bg-slate-200/50 w-64 mt-3 pt-1
-                rounded-md relative border-2 border-slate-500"
-                key={ recipe.id }
-              >
-                <div className="absolute top-56 left-52">
-                  <ShareButton
-                    src={ shareBtn }
-                    testId={ `${index}-horizontal-share-btn` }
-                    handleClickShareBtn={
-                      () => handleClickShareBtn(recipe.type, recipe.id)
-                    }
-                  />
-                </div>
-                <a href={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }>
-                  <img
-                    className="h-60 w-60 rounded-xl m-auto mt-2"
-                    src={ recipe.image }
-                    alt={ recipe.name }
-                    data-testid={ `${index}-horizontal-image` }
-                  />
-                </a>
-                {copyLink && (
-                  <p
-                    className="text-green-600 text-center text-sm"
-                  >
-                    Link copied!
-                  </p>
-                )}
-                <a href={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }>
-                  <p
-                    className="text-center"
-                    data-testid={ `${index}-horizontal-name` }
-                  >
-                    {recipe.name}
-                  </p>
-                </a>
-                <p
-                  data-testid={ `${index}-horizontal-top-text` }
-                >
-                  {`${recipe.nationality} -
-                  ${recipe.category} - ${recipe.alcoholicOrNot}`}
-                </p>
-
-                <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-                <div>
-                  {recipe.tags.map((tagName) => (
-                    <p
-                      key={ tagName }
-                      data-testid={ `${index}-${tagName}-horizontal-tag` }
-                    >
-                      {tagName}
-                    </p>
-                  ))}
-                </div>
-              </div>
+              <CardRecipe recipe={ recipe } index={ index } key={ index } />
             ))}
         </section>
       </div>
-      <Footer history={ history }/>
+      <Footer history={ history } />
     </>
   );
 }
