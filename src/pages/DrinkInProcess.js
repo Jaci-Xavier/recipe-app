@@ -48,18 +48,17 @@ function DrinksInProcess() {
   //   return <p>Loading...</p>;
   // }
 
-  const doneRecipes =
-    {
-      id,
-      type: 'drink',
-      nationality: recipe.strArea ? recipe.strArea : '',
-      category: recipe.strCategory ? recipe.strCategory : '',
-      alcoholicOrNot: recipe.strAlcoholic ? recipe.strAlcoholic : '',
-      name: recipe.strDrink,
-      image: recipe.strDrinkThumb,
-      doneDate: dateNow.toISOString(),
-      tags,
-    };
+  const doneRecipes = {
+    id,
+    type: 'drink',
+    nationality: recipe.strArea ? recipe.strArea : '',
+    category: recipe.strCategory ? recipe.strCategory : '',
+    alcoholicOrNot: recipe.strAlcoholic ? recipe.strAlcoholic : '',
+    name: recipe.strDrink,
+    image: recipe.strDrinkThumb,
+    doneDate: dateNow.toISOString(),
+    tags,
+  };
 
   const onChange = ({ target }) => {
     const { checked } = target;
