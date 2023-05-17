@@ -27,8 +27,12 @@ function MealsDetails() {
   };
 
   const handleClickShareBtn = () => {
+    const FIX = 2000;
     copy(window.location.href);
     setCopyLink(true);
+    setTimeout(() => {
+      setCopyLink(false);
+    }, FIX);
   };
 
   useEffect(() => {

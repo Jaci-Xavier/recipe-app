@@ -15,12 +15,15 @@ function DrinksInProcess() {
   const [doneRecipesMock, setDoneRecipesMock] = useState([]);
   const dateNow = new Date();
   const location = window.location.href;
-  // console.log('linha 18', location);
   const share = location.replace(/(\/(?:meals|drinks)\/\d+)\/.*/, '$1');
 
   const handleClickShareBtn = () => {
+    const FIX = 2000;
     copy(share);
     setCopyLink(true);
+    setTimeout(() => {
+      setCopyLink(false);
+    }, FIX);
   };
 
   useEffect(() => {
@@ -43,10 +46,6 @@ function DrinksInProcess() {
   }, [id]);
 
   const tags = recipe.strTags ? recipe.strTags.split(',') : [];
-
-  // if (!recipe) {
-  //   return <p>Loading...</p>;
-  // }
 
   const doneRecipes = {
     id,
@@ -88,7 +87,10 @@ function DrinksInProcess() {
 
     setDoneRecipesMock(recipesFromLocalStorage);
     history.push('/done-recipes');
-    localStorage.setItem('doneRecipes', JSON.stringify([...recipesFromLocalStorage, doneRecipes]));
+    localStorage.setItem(
+      'doneRecipes',
+      JSON.stringify([...recipesFromLocalStorage, doneRecipes]),
+    );
   };
 
   const {

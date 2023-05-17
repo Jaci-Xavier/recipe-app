@@ -17,8 +17,12 @@ function MealInProgress() {
   const share = location.replace(/(\/(?:meals|drinks)\/\d+)\/.*/, '$1');
 
   const handleClickShareBtn = () => {
+    const FIX = 2000;
     copy(share);
     setCopyLink(true);
+    setTimeout(() => {
+      setCopyLink(false);
+    }, FIX);
   };
 
   const tags = recipe.strTags ? recipe.strTags.split(',') : [];
@@ -43,22 +47,17 @@ function MealInProgress() {
     fetchRecipeData();
   }, [id]);
 
-  // if (!recipe) {
-  //   return <p>Loading...</p>;
-  // }
-
-  const doneRecipes =
-    {
-      id,
-      type: 'meal',
-      nationality: recipe.strArea ? recipe.strArea : '',
-      category: recipe.strCategory ? recipe.strCategory : '',
-      alcoholicOrNot: recipe.strAlcoholic ? recipe.strAlcoholic : '',
-      name: recipe.strMeal,
-      image: recipe.strMealThumb,
-      doneDate: dateNow.toISOString(),
-      tags,
-    };
+  const doneRecipes = {
+    id,
+    type: 'meal',
+    nationality: recipe.strArea ? recipe.strArea : '',
+    category: recipe.strCategory ? recipe.strCategory : '',
+    alcoholicOrNot: recipe.strAlcoholic ? recipe.strAlcoholic : '',
+    name: recipe.strMeal,
+    image: recipe.strMealThumb,
+    doneDate: dateNow.toISOString(),
+    tags,
+  };
 
   const onChange = ({ target }) => {
     const { checked } = target;
@@ -88,7 +87,10 @@ function MealInProgress() {
 
     setDoneRecipesMock(recipesFromLocalStorage);
     history.push('/done-recipes');
-    localStorage.setItem('doneRecipes', JSON.stringify([...recipesFromLocalStorage, doneRecipes]));
+    localStorage.setItem(
+      'doneRecipes',
+      JSON.stringify([...recipesFromLocalStorage, doneRecipes]),
+    );
   };
 
   const {
