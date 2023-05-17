@@ -1,42 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import copy from 'clipboard-copy';
-import shareBtn from '../images/shareIcon.svg';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
-import ShareButton from '../components/buttons/shareButton';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import CardFavorite from '../components/CardFavorite';
+import Footer from '../components/Footer';
 
 export default function FavoriteRecipes() {
-  // const xablau = [
-  //   {
-  //     id: '52771',
-  //     type: 'meal',
-  //     nationality: 'Italian',
-  //     category: 'Vegetarian',
-  //     alcoholicOrNot: '',
-  //     name: 'Spicy Arrabiata Penne',
-  //     image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-  //   },
-  //   {
-  //     id: '178319',
-  //     type: 'drink',
-  //     nationality: '',
-  //     category: 'Cocktail',
-  //     alcoholicOrNot: 'Alcoholic',
-  //     name: 'Aquamarine',
-  //     image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-  //   },
-  // ];
-
+  const history = useHistory();
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
-  const [copyLink, setCopyLink] = useState(false);
   const [filteredFavoriteRecipes, setFilteredFavoriteRecipes] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem('favoriteRecipes')) {
       setFavoriteRecipes(JSON.parse(localStorage.getItem('favoriteRecipes')));
     }
-    // setFavoriteRecipes(xablau);
   }, []);
 
   useMemo(() => ({
@@ -47,11 +24,6 @@ export default function FavoriteRecipes() {
     const updatedRecipes = favoriteRecipes.filter((recipe) => recipe.id !== id);
     setFavoriteRecipes([...updatedRecipes]);
     localStorage.setItem('favoriteRecipes', JSON.stringify(updatedRecipes));
-  };
-
-  const handleClickShareBtn = (type, id) => {
-    copy(`http://localhost:3000/${type}s/${id}`);
-    setCopyLink(true);
   };
 
   const handleClickFilter = (type) => {
@@ -72,73 +44,47 @@ export default function FavoriteRecipes() {
 
   return (
     <div>
-      <section>
-        <Header title="Favorite Recipes" searchBool={ false } />
-        <button
-          data-testid="filter-by-all-btn"
-          onClick={ () => handleClickFilter('all') }
-        >
-          All
+      <Header title="Favorite Recipes" searchBool={ false } />
+      <section className="flex flex-col pt-2">
+        <div className="flex justify-around">
+          <button
+            className="bg-gray-500 opacity-80 p-1 rounded-md hover:opacity-100 text-white"
+            data-testid="filter-by-all-btn"
+            onClick={ () => handleClickFilter('all') }
+          >
+            All
 
-        </button>
-        <button
-          data-testid="filter-by-meal-btn"
-          onClick={ () => handleClickFilter('meal') }
-        >
-          Meals
+          </button>
+          <button
+            className="bg-gray-500 opacity-80 p-1 rounded-md hover:opacity-100 text-white"
+            data-testid="filter-by-meal-btn"
+            onClick={ () => handleClickFilter('meal') }
+          >
+            Meals
 
-        </button>
-        <button
-          data-testid="filter-by-drink-btn"
-          onClick={ () => handleClickFilter('drink') }
-        >
-          Drinks
+          </button>
+          <button
+            className="bg-gray-500 opacity-80 p-1 rounded-md hover:opacity-100 text-white"
+            data-testid="filter-by-drink-btn"
+            onClick={ () => handleClickFilter('drink') }
+          >
+            Drinks
 
-        </button>
+          </button>
+        </div>
       </section>
-      <section>
+      <section className="m-auto flex flex-col items-center">
         {(filteredFavoriteRecipes.length > 0 ? filteredFavoriteRecipes : favoriteRecipes)
           .map((recipe, index) => (
-            <div key={ recipe.id }>
-              <a href={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }>
-                <img
-                  className="recipe-img"
-                  src={ recipe.image }
-                  alt={ recipe.name }
-                  data-testid={ `${index}-horizontal-image` }
-                />
-              </a>
-              <a href={ `http://localhost:3000/${recipe.type}s/${recipe.id}` }>
-                <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
-              </a>
-              <p
-                data-testid={ `${index}-horizontal-top-text` }
-              >
-                {`${recipe.nationality} - ${recipe.category} - ${recipe.alcoholicOrNot}`}
-              </p>
-
-              <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-              <ShareButton
-                src={ shareBtn }
-                testId={ `${index}-horizontal-share-btn` }
-                handleClickShareBtn={ () => handleClickShareBtn(recipe.type, recipe.id) }
-              />
-              <button
-                type="button"
-                data-testid={ `${index}-horizontal-favorite-btn` }
-                onClick={ () => handleFavoriteRemove(recipe.id) }
-                src={ blackHeartIcon }
-              >
-                <img
-                  src={ blackHeartIcon }
-                  alt="Remover"
-                />
-              </button>
-
-              {copyLink && <small>Link copied!</small>}
-            </div>
+            <CardFavorite
+              recipe={ recipe }
+              index={ index }
+              key={ index }
+              handleFavoriteRemove={ handleFavoriteRemove }
+            />
           ))}
       </section>
+      <Footer history={ history } />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import blackHeartIcon from '../../images/heart-fill.svg';
 import whiteHeartIcon from '../../images/heart.svg';
 
 function FavoriteButton({ recipe }) {
-  // console.log(recipe);
   const [favorite, setFavorite] = useState(false);
 
   const iconPath = favorite ? blackHeartIcon : whiteHeartIcon;

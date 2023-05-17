@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
-// import { useState } from 'react';
-// import copy from 'clipboard-copy';
 import shareBtn from '../../images/shareIcon.svg';
 
 function ShareButton({ testId, handleClickShareBtn }) {
   return (
     <div>
       <button
-        // className="hover:bg rounded hover:scale-125 duration-500"
         type="button"
         src={ shareBtn }
         onClick={ handleClickShareBtn }

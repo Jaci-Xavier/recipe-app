@@ -76,7 +76,7 @@ function DrinksDetails() {
         src={ strDrinkThumb }
         alt={ strDrink }
       />
-      <div className="flex absolute w-14 gap-2 top-60 left-64">
+      <div className="flex absolute w-14 gap-2 top-60 left-60">
         <FavoriteButton testId="favorite-btn" recipe={ recipe } />
         <ShareButton
           testId="share-btn"

@@ -78,7 +78,7 @@ function MealsDetails() {
         alt={ strMeal }
       />
       <div
-        className="flex absolute w-14 gap-2 top-60 left-64"
+        className="flex absolute w-14 gap-2 top-60 left-60"
       >
         <FavoriteButton testId="favorite-btn" recipe={ recipe } />
         <ShareButton

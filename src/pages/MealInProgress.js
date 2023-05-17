@@ -41,7 +41,6 @@ function MealInProgress() {
       const data = await response.json();
       const result = data.meals[0];
       setRecipe(result);
-      // console.log(result);
     }
 
     fetchRecipeData();
@@ -116,7 +115,7 @@ function MealInProgress() {
         src={ strMealThumb }
         alt={ strMeal }
       />
-      <div className="flex absolute w-14 gap-2 top-64 left-64">
+      <div className="flex absolute w-14 gap-2 top-64 left-60">
         <FavoriteButton recipe={ recipe } />
         <ShareButton
           testId="share-btn"

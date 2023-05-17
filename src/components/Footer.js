@@ -1,12 +1,12 @@
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import iconMeal from '../images/mealIcon.svg';
 import iconDrink from '../images/drinkIcon.svg';
 import './Footer.css';
 import { RecipesContext } from '../context/RecipesProvider';
 import logo from '../Style/logo.png';
-import { Link } from 'react-router-dom';
 
 function Footer({ history }) {
   const { setPath } = useContext(RecipesContext);

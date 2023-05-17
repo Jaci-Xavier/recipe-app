@@ -22,7 +22,6 @@ function Header({ title, searchBool }) {
         <img
           src={ profileLogo }
           alt="clique para ir ao perfil"
-          // data-testid="profile-top-btn"
         />
       </button>
     </header>
