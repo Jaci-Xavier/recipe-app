@@ -38,8 +38,6 @@ function MealsDetails() {
       setRecipe(data.meals[0]);
       const drinks = await fetchRecipesDrinks();
       setDrinksRecommendation(drinks.slice(0, MAX_DRINKS));
-      // if (Array.isArray(drinks)) {
-      // } é mesmo preciso dessa linha de código?
     }
 
     fetchRecipeData();
@@ -130,13 +128,17 @@ function MealsDetails() {
         >
           {strInstructions}
         </p>
-
         <iframe
-          className="m-auto mt-2"
-          title="video"
-          data-testid="video"
-          src={ strYoutube }
+          width="380"
+          height="215"
+          src={ strYoutube.replace('watch?v=', 'embed/') }
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay;
+            clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
         />
+
       </div>
       <p className="text-white">Opções de Bebidas</p>
       <Slider { ...settings }>
